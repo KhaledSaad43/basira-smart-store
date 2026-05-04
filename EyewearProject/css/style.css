@@ -1,0 +1,189 @@
+:root {
+    --bg: #0f172a; --card: #1e293b; --accent: #38bdf8;
+    --text: #f1f5f9; --success: #22c55e; --danger: #ef4444; --whatsapp: #25d366;
+}
+
+* { box-sizing: border-box; }
+body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--text); margin: 0; direction: rtl; overflow-x: hidden; }
+
+
+button, .btn-opt, .pay-card, .upload-container, .checkout-btn, .final-btn, .save-btn-fancy {
+    cursor: pointer !important;
+    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+button:active, .pay-card:active, .upload-container:active { transform: scale(0.92) !important; }
+
+
+.area { background: var(--bg); width: 100%; height: 100vh; position: fixed; z-index: -1; top: 0; }
+.circles li {
+    position: absolute; list-style: none; display: block;
+    background: rgba(56, 189, 248, 0.15); animation: animate 25s linear infinite;
+    bottom: -150px; border-radius: 50%;
+}
+.circles li:nth-child(1){ left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+.circles li:nth-child(2){ left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+.circles li:nth-child(3){ left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+.circles li:nth-child(4){ left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+.circles li:nth-child(5){ left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+.circles li:nth-child(6){ left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+.circles li:nth-child(7){ left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+.circles li:nth-child(8){ left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+.circles li:nth-child(9){ left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+.circles li:nth-child(10){ left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+
+@keyframes animate {
+    0%{ transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+    100%{ transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+}
+
+
+.whatsapp-float {
+    position: fixed; bottom: 30px; right: 30px;
+    background: var(--whatsapp); color: white;
+    width: 65px; height: 65px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 35px; z-index: 5000;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    text-decoration: none;
+    transition: 0.3s;
+    animation: pulse-wa 2s infinite; 
+}
+
+@keyframes pulse-wa {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1) rotate(10deg);
+    background: #1eb855;
+}
+
+
+.container { max-width: 500px; margin: auto; padding: 40px 15px; }
+h1 { font-size: 2.8rem; text-align: center; color: var(--accent); margin: 0; font-weight: 900; text-shadow: 0 0 20px rgba(56, 189, 248, 0.3); }
+
+.grid-buttons { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 15px; }
+.btn-opt { background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; padding: 15px; font-weight: bold; }
+
+.floating-cart { position: fixed; left: 20px; top: 20px; background: var(--accent); color: var(--bg); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; z-index: 3000; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+
+.upload-container { border: 2px dashed rgba(56, 189, 248, 0.4); border-radius: 15px; padding: 30px; text-align: center; background: rgba(255,255,255,0.02); }
+#prescription-preview-container img { width: 100%; max-height: 200px; object-fit: contain; border-radius: 12px; border: 2px solid var(--accent); margin-top: 15px; }
+
+.modal { display: none; position: fixed; z-index: 4000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(8px); }
+.modal-content { background: var(--card); border-radius: 30px; border: 1px solid var(--accent); padding: 25px; width: 90%; max-width: 400px; margin: 50px auto; text-align: center; }
+
+
+.item-row { display: flex; align-items: center; justify-content: space-between; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.preview-img { width: 55px; height: 45px; object-fit: contain; border-radius: 8px; border: 1px solid var(--accent); background: white; margin: 5px; }
+.qty-btn { width: 32px; height: 32px; border-radius: 8px; border: none; font-size: 1.2rem; font-weight: bold; color: white; display: flex; align-items: center; justify-content: center; }
+.btn-plus { background: linear-gradient(135deg, #22c55e, #16a34a); border-bottom: 3px solid #15803d; }
+.btn-minus { background: linear-gradient(135deg, #ef4444, #dc2626); border-bottom: 3px solid #991b1b; }
+[id^="qty-"] { font-family: 'Courier New', monospace; font-size: 1.2rem; font-weight: 900; color: var(--accent); min-width: 30px; text-align: center; }
+
+
+.payment-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.pay-card { width: 100%; padding: 18px; border-radius: 15px; background: rgba(255,255,255,0.05); color: white; border: 1px solid #334155; font-weight: bold; font-size: 1.1rem; }
+.save-btn-fancy { background: linear-gradient(90deg, #38bdf8, #0284c7); color: #0f172a; width: 100%; padding: 16px; border-radius: 15px; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; margin-top: 25px; gap: 10px; display: flex; align-items: center; justify-content: center; }
+.edit-back-btn { background: transparent; color: var(--danger); border: 1px solid var(--danger); width: 100%; padding: 12px; border-radius: 12px; margin-top: 10px; font-weight: bold; }
+.checkout-btn { background: var(--accent); color: var(--bg); padding: 18px 40px; border: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2); }
+.final-btn { background: var(--success); color: white; width: 100%; padding: 16px; border-radius: 12px; font-weight: bold; }
+.input-field { width: 100%; padding: 15px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #334155; background: #0f172a; color: white; outline: none; }
+
+
+.main-footer { background: rgba(15, 23, 42, 0.9); padding: 40px 20px; border-top: 1px solid rgba(56, 189, 248, 0.1); margin-top: 80px; text-align: center; }
+.developer span { color: var(--accent); font-weight: bold; }
+.social-icons-row { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
+.social-icon-only { color: #94a3b8; font-size: 1.5rem; transition: 0.3s ease; }
+.social-icon-only:hover { transform: translateY(-5px); }
+.fb:hover { color: #1877F2; } .li:hover { color: #0A66C2; } .gh:hover { color: #fff; }
+/* --- تنسيقات اللوجو الجديد --- */
+
+/* تنسيق الحاوية الرئيسية للهيدر لجعل العناصر تتوسط الصفحة */
+.main-header {
+    text-align: center;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* حاوية اللوجو والنص لضمان محاذاتهم أفقياً بشكل مثالي */
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* المسافة بين الصورة والنص */
+    margin-bottom: 10px;
+}
+
+
+.site-logo {
+    width: 60px;
+    height: auto;
+
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
+    transition: transform 0.3s ease;
+}
+
+
+.logo-wrapper:hover .site-logo {
+    transform: scale(1.05) rotate(-5deg); 
+}
+
+
+.logo-text {
+    font-size: 2.8rem;
+    color: var(--accent);
+    font-weight: 900;
+
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+    margin: 0;
+}
+
+
+.header-subtitle {
+    margin: 0;
+    font-size: 1rem;
+    color: #94a3b8; 
+}
+
+
+@media (max-width: 480px) {
+    .site-logo {
+        width: 45px; 
+    }
+    .logo-text {
+        font-size: 2.2rem;
+    }
+}
+
+.floating-cart {
+    padding: 10px 15px;
+    border-radius: 50px;
+    flex-direction: column;
+    min-width: 90px;
+}
+
+.floating-cart .count {
+    font-size: 1.2rem;
+}
+
+.floating-cart .total {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+
+.fly-img {
+    position: fixed;
+    width: 50px;
+    height: 40px;
+    object-fit: contain;
+    z-index: 9999;
+    pointer-events: none;
+    transition: all 0.8s cubic-bezier(0.65, -0.55, 0.25, 1.55);
+}

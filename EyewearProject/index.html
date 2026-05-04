@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بصيرة - المتجر الذكي</title>
+    <!-- أيقونة الشريط العلوي (Favicon) -->
+    <link rel="icon" type="image/png" href="images/بصيرة.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+
+<div class="area">
+    <ul class="circles">
+        <li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li>
+    </ul>
+</div>
+
+<a href="https://wa.me/201095400534" class="whatsapp-float" target="_blank" title="تواصل معنا عبر واتساب">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<div class="floating-cart" id="cart-counter">
+    <div class="count">🛒 0</div>
+    <div class="total">0 ج.م</div>
+</div>
+
+<div class="container">
+    <header class="main-header">
+        <div class="logo-wrapper">
+            <img src="images/بصيرة.png" alt="لوجو بصيرة" class="site-logo">
+            <h1 class="logo-text">بصيرة</h1>
+        </div>
+        <p class="header-subtitle">رؤية ذكية بتصميم عصري</p>
+    </header>
+
+    <div class="section">
+        <h3>👓 النظارات الطبية</h3>
+        <div class="grid-buttons">
+            <button class="btn-opt" onclick="openProducts('بلاستيك طبية')">بلاستيك</button>
+            <button class="btn-opt" onclick="openProducts('تيتانيوم طبية')">تيتانيوم</button>
+            <button class="btn-opt" onclick="openProducts('معدن طبية')">معدن</button>
+        </div>
+        <div class="preview-area" id="med-preview"></div>
+    </div>
+
+    <div class="section">
+        <h3>🕶️ النظارات الشمسية</h3>
+        <div class="grid-buttons">
+            <button class="btn-opt" onclick="openProducts('شمس رجالي')">رجالي</button>
+            <button class="btn-opt" onclick="openProducts('شمس حريمي')">حريمي</button>
+        </div>
+        <div class="preview-area" id="sun-preview"></div>
+    </div>
+
+    <div class="section">
+        <h3>📏 المقاسات</h3>
+        <div class="upload-container" onclick="document.getElementById('prescriptionInput').click()">
+            <input type="file" id="prescriptionInput" hidden accept="image/*" onchange="handlePrescription(event)">
+            <div class="upload-content" id="upload-inner">
+                <i class="fas fa-file-prescription"></i>
+                <p>ارفع روشتة المقاسات هنا</p>
+            </div>
+            <div id="prescription-preview-container"></div>
+        </div>
+    </div>
+
+    <button onclick="startPaymentFlow()" class="checkout-btn">استكمال الطلب 💳</button>
+</div>
+
+<!-- Modals -->
+<div id="productModal" class="modal"><div class="modal-content"><h2 id="modalTitle"></h2><div id="gallery"></div>
+    <button onclick="closeModal('productModal')" class="save-btn-fancy">
+        <i class="fas fa-check-double"></i> حفـظ ومتابعة الطـلب
+    </button>
+</div></div>
+
+<div id="paymentModal" class="modal"><div class="modal-content"><h2>طريقة الدفع</h2><div class="payment-grid">
+    <button class="pay-card" onclick="selectPayment('عند الاستلام')">💵 كاش عند الاستلام</button>
+    <button class="pay-card" onclick="selectPayment('فودافون كاش')">📱 فودافون كاش</button>
+    <button class="pay-card" onclick="selectPayment('انستا باي')">⚡ انستا باي</button>
+</div><button onclick="closeModal('paymentModal')" class="edit-back-btn">رجوع للمتجر</button></div></div>
+
+<div id="reviewModal" class="modal">
+    <div class="modal-content">
+        <h2 style="color: var(--success);">تأكيد طلبك</h2>
+        <div id="summaryList"></div>
+        <div class="user-info-form">
+            <input type="text" id="user-name" placeholder="الاسم بالكامل" class="input-field">
+            <input type="tel" id="user-phone" placeholder="رقم الهاتف" class="input-field">
+        </div>
+        <div id="status-msg"></div>
+        <button id="confirmBtn" class="final-btn" onclick="sendToEmailJS()">تأكيد وإرسال 🚀</button>
+        <button onclick="closeModal('reviewModal')" class="edit-back-btn">تعديل الطلب</button>
+    </div>
+</div>
+
+<footer class="main-footer">
+    <div class="footer-content">
+        <p>© 2026 جميع الحقوق محفوظة لمتجر <span>بصيرة</span></p>
+        <p>تم التطوير بواسطة <strong>Khaled Saad</strong></p>
+        <div class="social-icons-row">
+            <a href="https://www.facebook.com/share/1EYJLXk5g6/" class="social-icon-only fb"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/in/khaled-saad-b78ba8307" class="social-icon-only li"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/KhaledSaad43" class="social-icon-only gh"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+<audio id="addSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+</html>
