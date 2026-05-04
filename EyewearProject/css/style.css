@@ -99,9 +99,8 @@ h1 { font-size: 2.8rem; text-align: center; color: var(--accent); margin: 0; fon
 .social-icon-only { color: #94a3b8; font-size: 1.5rem; transition: 0.3s ease; }
 .social-icon-only:hover { transform: translateY(-5px); }
 .fb:hover { color: #1877F2; } .li:hover { color: #0A66C2; } .gh:hover { color: #fff; }
-/* --- تنسيقات اللوجو الجديد --- */
 
-/* تنسيق الحاوية الرئيسية للهيدر لجعل العناصر تتوسط الصفحة */
+
 .main-header {
     text-align: center;
     margin-bottom: 40px;
@@ -111,12 +110,11 @@ h1 { font-size: 2.8rem; text-align: center; color: var(--accent); margin: 0; fon
     justify-content: center;
 }
 
-/* حاوية اللوجو والنص لضمان محاذاتهم أفقياً بشكل مثالي */
 .logo-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px; /* المسافة بين الصورة والنص */
+    gap: 15px; 
     margin-bottom: 10px;
 }
 
