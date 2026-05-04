@@ -264,7 +264,7 @@ function showReviewModal() {
 }
 
 
-// إرسال الطلب (Builder هنا 🔥)
+// إرسال الطلب (Builder)
 function sendToEmailJS() {
     const name = document.getElementById('user-name').value;
     const phone = document.getElementById('user-phone').value;
